@@ -123,7 +123,7 @@ server:
     paths:
       - path: /
         pathType: ImplementationSpecific
-      
+
     extraTls:
       - secretName: argocd-tls
         hosts:

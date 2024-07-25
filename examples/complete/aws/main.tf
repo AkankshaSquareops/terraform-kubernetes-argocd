@@ -17,6 +17,6 @@ module "argocd" {
     autoscaling_enabled          = true
     slack_notification_token     = ""
     argocd_notifications_enabled = true
-    ingress_class_name           = "ingress-nginx"  # enter ingress class name according to your requirement (example: "ingress-nginx", "internal-ingress")
+    ingress_class_name           = "ingress-nginx" # enter ingress class name according to your requirement (example: "ingress-nginx", "internal-ingress")
   }
 }

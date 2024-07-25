@@ -25,12 +25,13 @@ This module is compatible with EKS, AKS & GKE which is great news for users depl
 module "argocd" {
   source        = "squareops/argocd/kubernetes"
   argocd_config = {
-    hostname                   = "argocd.prod.in"
-    values_yaml                = ""
-    redis_ha_enabled           = true
-    autoscaling_enabled        = true
-    slack_notification_token   = "xoxb-qQ8486bluEuvmxrYx"
-    argocd_notifications_enabled = true  
+    hostname                     = "argocd.prod.in"
+    values_yaml                  = file("./helm/values.yaml")
+    redis_ha_enabled             = true
+    autoscaling_enabled          = true
+    slack_notification_token     = ""
+    argocd_notifications_enabled = true
+    ingress_class_name           = "ingress-nginx" # enter ingress class name according to your requirement (example: "ingress-nginx", "internal-ingress")
   }
 }
 
@@ -71,7 +72,8 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_argocd_config"></a> [argocd\_config](#input\_argocd\_config) | Specify the configuration settings for Argocd, including the hostname, redis\_ha\_enabled, autoscaling, notification settings, and custom YAML values. | `any` | <pre>{<br>  "argocd_notifications_enabled": false,<br>  "autoscaling_enabled": false,<br>  "hostname": "",<br>  "redis_ha_enabled": false,<br>  "slack_notification_token": "",<br>  "values_yaml": ""<br>}</pre> | no |
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the Argocd chart that will be used to deploy Argocd application. | `string` | `"5.53.11"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of the Argocd chart that will be used to deploy Argocd application. | `string` | `"7.3.10"` | no |
+| <a name="input_ingress_class_name"></a> [ingress\_class\_name](#input\_ingress\_class\_name) | Enter ingress class name which is created in EKS cluster | `string` | `"ingress-nginx"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Name of the Kubernetes namespace where the Argocd deployment will be deployed. | `string` | `"argocd"` | no |
 
 ## Outputs
